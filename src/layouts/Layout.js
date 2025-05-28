@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import { ScaleLoader } from 'react-spinners'
 import { ToastContainer } from 'react-toastify'
 import { useSelector } from "react-redux"
-
 
 const override = {
     position: 'absolute',
@@ -12,18 +11,22 @@ const override = {
     left: 0,
     right: 0,
     textAlign: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'rgba(255, 255, 255, 0.8)',
     zIndex: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 }
 
 const Layout = () => {
-  const statusLoading = useSelector(state => state.globalLoading.status)
-  return (
-    <div>
-      <ScaleLoader loading={ statusLoading } color="#17dfb5" cssOverride={ override } />
-      <Outlet />
-      <ToastContainer />
-    </div>
-  )
+    const statusLoading = useSelector(state => state.globalLoading.status)
+    return (
+      <div>
+        <ScaleLoader loading={ statusLoading } color="#17dfb5" cssOverride={ override } />
+        <Outlet />
+        <ToastContainer />
+      </div>
+    )
 }
 
-export default Layout
+export default Layout;

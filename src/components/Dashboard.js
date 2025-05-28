@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import requestApi from '../helpers/api';
 
 const Dashboard = () => {
-  return (
+
+    const [dashboardData, setDashboardData] = useState({});
+
+    useEffect(() => {
+        requestApi('/users', 'GET', []).then(response => {
+            console.log(response)
+            setDashboardData({
+                ...dashboardData, totalUser: response.data.total
+            })
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [])
+
+    return (
         <div className="content-wrapper">
             <div className="row">
                 <div className="col-sm-12">
@@ -35,8 +50,8 @@ const Dashboard = () => {
                                     <div className="col-sm-12">
                                         <div className="statistics-details d-flex align-items-center justify-content-between">
                                         <div>
-                                            <p className="statistics-title">Bounce Rate</p>
-                                            <h3 className="rate-percentage">32.53%</h3>
+                                            <p className="statistics-title">Total Users</p>
+                                            <h3 className="rate-percentage">{ dashboardData.totalUser }</h3>
                                             <p className="text-danger d-flex"><i className="mdi mdi-menu-down"></i><span>-0.5%</span></p>
                                         </div>
                                         <div>
