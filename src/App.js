@@ -8,7 +8,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import PrivateRoutes from './layouts/PrivateRoutes'
 import PublicRoutes from './layouts/PublicRoutes'
-import Layout from './layouts/Layout'
+import Layout from "./layouts/Layout";
 
 
 function App() {
